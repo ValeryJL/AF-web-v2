@@ -1,29 +1,37 @@
-# AF Construcciones - Complete Website Redesign
+# AF Construcciones - Web Redesign & Optimizations
 
-This repository contains the source code for the **AF Construcciones y Servicios** website. The project involved a complete, from-scratch redesign of the architecture, moving away from a monolithic, legacy structure to a modern, dynamic, and premium **Static HTML/CSS/JS** architecture.
+This repository contains the source code for the **AF Construcciones y Servicios** website. This branch includes advanced conversion and performance optimizations built on top of the redesigned architecture.
 
 ## 🚀 Overview
-The primary goal was to completely overhaul the website to improve restrictiveness, comfort, and cross-platform compatibility. Built entirely from scratch, the new architecture focuses on a modern look, dynamic user interactions without page reloads, and a premium "sales-oriented" copywriting approach to convert potential clients.
+The primary goal was to completely overhaul the website to improve usability, performance, and cross-platform compatibility. The new architecture focuses on a modern look, dynamic user interactions without page reloads, and a premium "sales-oriented" copywriting approach.
 
-## 🛠️ Key Improvements
+## 🛠️ Key Improvements & Optimizations
 
 ### 1. From-Scratch Redesign
-Unlike previous iterations, this version was built 100% from scratch using semantic HTML5, modern CSS3 (Flexbox/Grid), and Vanilla JavaScript. We abandoned all legacy code, plugins, and dependencies for maximum control and performance.
+Built 100% with semantic HTML5, modern CSS3 (Flexbox/Grid), and Vanilla JavaScript. No heavy external dependencies, ensuring instant load times.
 
-### 2. Single-Page Project Modals
-Instead of loading separate HTML pages for each project portfolio, we implemented custom dynamic, full-screen models directly on the homepage. This provides a lightning-fast experience where users can view high-resolution image galleries and project details without ever leaving the main page.
+### 2. Project Modals with Technical Details
+We implemented dynamic modals that include high-resolution galleries and a new **"Ficha Técnica"** section with specific technical details (normatives, materials, and location) to highlight industrial expertise.
 
-### 3. Persuasive & Professional Copywriting
-The text content across the site, particularly the "About Us" and "Services" sections, was completely rewritten. The new copy focuses on the company's ability to solve complex industrial problems, highlighting safety, quality materials, and 24/7 reliability for critical infrastructure.
+### 3. Conversion Optimization (WhatsApp)
+An animated floating WhatsApp button was integrated to facilitate direct and fast contact for potential clients.
 
-### 4. Custom Vanilla JS Gallery
-We built a custom, zero-dependency **Vanilla JavaScript Carousel** to power the project galleries within the modals. It handles image thumbnails and smooth transitions efficiently without relying on bulky external libraries.
+### 4. Dynamic Portfolio Filtering
+The portfolio now features category filters (Chemical, Civil Works, Services), allowing clients to quickly find relevant projects in their sector.
+
+### 5. Client Carousel & UX Refinement
+- **Infinite Carousel**: A premium section showcasing major client logos to build trust.
+- **Clean Navigation**: Optimized URLs (removing `index.html`) and custom 404/500 error pages consistent with the brand identity.
 
 ## 💻 Tech Stack
 - **HTML5** (Estructura Semántica de alto rendimiento)
-- **CSS3** (Custom Properties, Grid, Flexbox, Animaciones industriales)
-- **Vanilla JavaScript** (Interactividad dinámica, Modals y Carousels propios)
+- **CSS3** (Custom Properties, Flexbox Centrado, Animaciones)
+- **Vanilla JavaScript** (Lógica de filtrado, modals y carrusel unificada)
 - **GitHub Pages** (Infraestructura de despliegue)
+
+## 🌐 Live Site
+The optimized site is deployed at:
+[https://af.valeryjl.com.ar/](https://af.valeryjl.com.ar/)
 
 ---
 *Este proyecto redefine la presencia digital de AF Construcciones, priorizando la velocidad, la seguridad y una estética industrial premium.*

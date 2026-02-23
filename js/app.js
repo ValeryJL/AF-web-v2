@@ -85,9 +85,88 @@ document.addEventListener('DOMContentLoaded', () => {
     fadeElements.forEach(element => {
         observer.observe(element);
     });
+
+    // 4. Portfolio Filtering Logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (filterButtons.length > 0 && projectCards.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // 5. Custom Carousel Logic for Project Modals
+    const carousels = document.querySelectorAll('.project-carousel');
+    carousels.forEach(carousel => {
+        const mainImg = carousel.querySelector('.carousel-main-img');
+        const prevBtn = carousel.querySelector('.prev-btn');
+        const nextBtn = carousel.querySelector('.next-btn');
+        const thumbs = carousel.querySelectorAll('.carousel-thumb');
+
+        if (!mainImg || thumbs.length === 0) return;
+
+        let currentIndex = 0;
+
+        const updateCarousel = (index) => {
+            thumbs.forEach(t => t.classList.remove('active'));
+            const activeThumb = thumbs[index];
+            activeThumb.classList.add('active');
+            const fullSrc = activeThumb.getAttribute('data-fullsrc');
+
+            mainImg.style.opacity = '0.5';
+            setTimeout(() => {
+                mainImg.src = fullSrc;
+                mainImg.style.opacity = '1';
+            }, 150);
+
+            currentIndex = index;
+            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        };
+
+        // Initialize
+        updateCarousel(0);
+
+        thumbs.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => updateCarousel(index));
+        });
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                let nextIndex = (currentIndex + 1) % thumbs.length;
+                updateCarousel(nextIndex);
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                let prevIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
+                updateCarousel(prevIndex);
+            });
+        }
+    });
 });
 
-// 4. Project Modals Logic
+// 6. Project Modals External Triggers
 function openProjectModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -104,7 +183,6 @@ function closeProjectModal(modalId) {
     }
 }
 
-// Close modal on click outside
 window.addEventListener('click', (event) => {
     if (event.target.classList.contains('modal-overlay')) {
         event.target.classList.remove('active');
