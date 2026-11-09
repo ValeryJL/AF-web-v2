@@ -1,0 +1,31 @@
+# AF Construcciones y Servicios
+
+> Empresa de ingeniería, obras electromecánicas, montajes industriales, obras metalúrgicas y servicios civiles con sede en La Plata, Provincia de Buenos Aires, Argentina. Especialistas en proyectos críticos para la industria química, petroquímica, petrolera, alimenticia, logística y organismos públicos en el Polo Industrial de La Plata, Berisso, Ensenada, AMBA y alcance nacional.
+
+- Sitio web oficial: https://afconstruccionesyservicios.com.ar/
+- Contexto extendido para LLMs: https://afconstruccionesyservicios.com.ar/llms-full.txt
+
+## Datos de Contacto y Ubicación
+- **Razón / Nombre Comercial**: AF Construcciones y Servicios
+- **Domicilio Legal**: Av. 25 N° 246 e/ 529 y 530, Tolosa / La Plata, Provincia de Buenos Aires, Argentina
+- **Domicilio Industrial (Planta / Taller)**: Calle 530 N° 3062, La Plata, Provincia de Buenos Aires, Argentina (https://maps.app.goo.gl/VoGvnZ7XEWVrHodo9)
+- **Teléfonos / WhatsApp**: +54 9 221 303-5814 / +54 9 221 506-7151
+- **E-mail**: afconstruccionesyservicios@gmail.com
+- **Disponibilidad**: Atención operativa prácticamente las 24 horas para servicios industriales críticos.
+
+## Especialidades y Servicios Principales
+1. **Instalaciones Eléctricas Industriales**: Instalaciones antiexplosivas (APE) y estancas, tendido de bandejas portacables, montaje de subestaciones transformadoras, tableros de potencia y transferencia automática, montaje y conexionado de grupos electrógenos industriales a gas y diésel.
+2. **Obras Metalúrgicas y Estructuras**: Diseño, construcción y montaje pesado de soportes, pisos enrejillados, anclajes ingenieriles, estructuras de apoyo, tanques de reserva y reparación integral de hornos, torres y calderas industriales.
+3. **Instrumentación y Control**: Montaje especializado de instrumentación neumática y electrónica, tendidos de red de datos, sistemas de detección de gases, calibración de precisión y automatización de plantas.
+4. **Soldadura Industrial de Exigencia**: Soldaduras calificadas TIG, eléctricas y oxiacetilénicas en diversas aleaciones bajo estrictos controles de calidad y seguridad industrial.
+5. **Montajes Integrales Especiales y Obras Civiles**: Izajes de gran porte con grúas telescópicas, redes integrales de lucha contra incendios (hidrantes, salas de bombas, tanques de reserva), plantas de tratamiento de agua y efluentes, quemadores de biogás/gases industriales, balizamiento normalizado, antenas de radioenlace y Shelters de Comunicaciones.
+
+## Obras Destacadas Recientes
+- **Fiscalía de Estado de la Provincia de Buenos Aires (Calle 49 y 16, La Plata)**: Operativo de logística e izaje de gran porte con grúa telescópica, montaje electromecánico e instalación integral de grupo electrógeno a gas marca CETEC, acometida de gas, tendido eléctrico de potencia, transferencia automática y puesta en marcha bajo carga.
+- **Poder Judicial de la Provincia de Buenos Aires (Departamento Judicial La Plata)**: Reacondicionamiento integral de salas de calderas (Edificio Palacio y Fuero Penal), provisión e instalación de sistemas inteligentes de detección de gases y ventilación en subsuelos, nueva aislación térmica de calderas principales y reemplazo total de calderas en la Dirección General de Asesoría Pericial.
+- **Minicuotas Ribeiro SAIC (Depósito Logístico Bosques y cobertura nacional)**: Montaje de red integral de lucha contra incendios, instalación de bombas de incendio de alto caudal, ampliación de red de hidrantes y construcción civil y montaje de tanque de reserva de agua de 150 m³.
+- **Benito Roggio Ambiental - BRA (CEAMSE Norte 3 y Planta Mar del Plata)**: Montaje electromecánico y puesta en marcha de quemadores de gases e implementación de sistemas de control avanzados provistos por John Zink.
+- **Grupo Estisol (Plantas Industriales de Tucumán, Pilar y Pompeya)**: Montajes industriales de calderas, tanques de gran volumen, sistemas de bombas industriales y máquinas expansoras.
+
+## Principales Clientes e Instituciones
+Poder Judicial de la Provincia de Buenos Aires, Ministerio de Justicia de la Nación, Fiscalía de Estado PBA, Gobierno de la Provincia de Buenos Aires, Senado PBA, Ministerio de Salud PBA, Ministerio de Economía PBA, Dirección General de Cultura y Educación PBA, Benito Roggio Ambiental (BRA), Grupo Estisol, Minicuotas Ribeiro, Constructora Insa S.A., Colegio de Escribanos PBA, Colegio de Médicos PBA, FEMEBA, Hotel Dazzler by Wyndham, Hotel Land Plaza La Plata, Lácteos Carnevali, Pim Pollo, Randon S.A., CASDE Servicios, Arion, Zingaro.

@@ -1041,6 +1041,209 @@ img {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
+/* Contact & Quote Form Section */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--spacing-md);
+    max-width: 1080px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.contact-info-block {
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--color-secondary);
+    text-align: left;
+}
+
+.contact-info-block h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info-block h3 i {
+    color: var(--color-secondary);
+    background: var(--color-primary);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.contact-info-block a {
+    color: var(--color-accent-dark);
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.contact-availability {
+    margin-top: 0.9rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-availability i {
+    color: var(--color-accent-dark);
+}
+
+.quote-form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    text-align: left;
+    border-top: 4px solid var(--color-secondary);
+}
+
+.quote-form-title {
+    color: var(--color-primary);
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quote-form-title i {
+    color: var(--color-accent-dark);
+}
+
+.quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-group label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1.5px solid #dde1e7;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background: #fafbfc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 220, 0, 0.28);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 96px;
+}
+
+.quote-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.quote-submit-btn {
+    flex: 1 1 200px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.quote-wa-btn {
+    flex: 1 1 200px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #25d366;
+    color: #fff;
+    border: 2px solid #25d366;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.quote-wa-btn:hover {
+    background-color: #1ebe5b;
+    border-color: #1ebe5b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+.quote-status {
+    display: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.quote-status.is-visible {
+    display: block;
+}
+
+.quote-status.is-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.quote-status.is-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
 /* Footer */
 .site-footer {
     background-color: var(--color-primary);
@@ -1372,5 +1575,17 @@ img {
 
     .tech-grid {
         grid-template-columns: 1fr;
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-form-card {
+        padding: 1.4rem;
     }
 }

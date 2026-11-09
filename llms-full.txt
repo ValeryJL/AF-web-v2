@@ -1,0 +1,104 @@
+# AF Construcciones y Servicios — Información Técnica Completa (LLMs Full Context)
+
+> Documento de referencia exhaustivo para asistentes de IA, motores de búsqueda generativos (ChatGPT, Claude, Perplexity, Google Gemini) y sistemas de compras industriales o licitaciones públicas.
+
+## 1. Perfil de la Empresa
+**AF Construcciones y Servicios** es una empresa argentina de ingeniería, construcciones civiles, montajes electromecánicos y mantenimiento industrial con base operativa e industrial en La Plata, Provincia de Buenos Aires.
+
+Nos desempeñamos como aliado estratégico para:
+- **Industrias de procesos continuos y discontinuos**: Química, petroquímica, petrolera, energía, medio ambiente, alimenticia, celulosa/plásticos expandidos y manufactura.
+- **Grandes superficies y logística**: Centros de distribución, depósitos logísticos, cadenas de retail y hotelería corporativa.
+- **Sector Público y Organismos Oficiales**: Ministerios, Poder Judicial, Fiscalía de Estado, Cámaras Legislativas, Consejos Escolares y Colegios Profesionales de la Provincia de Buenos Aires y Nación.
+
+### Propuesta de Valor
+- **Empresa que resuelve**: Ejecución llave en mano de proyectos electromecánicos y civiles complejos cumpliendo estrictamente los pliegos técnicos y los plazos pactados.
+- **Calidad y Seguridad Industrial**: Uso de materiales certificados de primera línea y cumplimiento riguroso de normativas de Seguridad, Higiene y Medio Ambiente.
+- **Disponibilidad 24/7**: Atención prácticamente las 24 horas para responder a paradas de planta, urgencias operativas y servicios críticos en el Polo Industrial de La Plata, Berisso, Ensenada y Gran Buenos Aires, con capacidad de despliegue en todo el territorio nacional.
+
+---
+
+## 2. Catálogo Detallado de Servicios
+
+### 2.1. Instalaciones Eléctricas Industriales y Generación de Respaldo
+- Montaje e instalación integral de **grupos electrógenos a gas y diésel** (incluyendo equipos de gran porte como grupos electrógenos CETEC), logística de izaje en edificios públicos e industriales, tableros de transferencia automática (TTA) y acometidas de combustible.
+- Ejecución de instalaciones eléctricas antiexplosivas (APE) y estancas para zonas clasificadas en plantas químicas y petroquímicas.
+- Tendido de bandejas portacables, canalizaciones subterráneas y aéreas, tendidos de potencia en baja y media tensión.
+- Montaje y mantenimiento de subestaciones transformadoras, tableros generales y corrección de factor de potencia.
+
+### 2.2. Obras Metalúrgicas, Termomecánica y Estructuras
+- Fabricación y montaje pesado de estructuras metálicas, soportes especiales, entrepisos industriales, pisos enrejillados (grating), escaleras marineras, pasarelas y anclajes de ingeniería.
+- Reparación integral, retubado, desmonte, retiro y nueva aislación térmica de **calderas industriales**, hornos y torres de proceso.
+- Reemplazo y modernización completa de salas de calderas para grandes edificios institucionales y complejos industriales.
+- Construcción y montaje de tanques metálicos y cisternas de gran volumen.
+
+### 2.3. Redes Contra Incendio e Infraestructura Hidráulica
+- Ingeniería y montaje de redes integrales de lucha contra incendios bajo normativas nacionales e internacionales.
+- Instalación de salas de bombas de incendio de alto caudal (bombas principales, jockey y motobombas).
+- Tendido y ampliación de redes de hidrantes, rociadores (sprinklers) y monitores.
+- Obra civil y montaje de tanques de reserva de agua contra incendio (ej. tanques de 150 m³).
+
+### 2.4. Instrumentación, Control y Medio Ambiente
+- Montaje de instrumentación neumática y electrónica de procesos industriales.
+- Instalación de sistemas inteligentes de detección temprana de gases (monóxido de carbono, gas natural, gases explosivos) y ventilación forzada automatizada en salas de máquinas y subsuelos.
+- Montaje electromecánico y puesta en marcha de quemadores industriales de gases (biogás / gases de relleno sanitario) y sistemas de control avanzados (ej. tecnología John Zink).
+- Tendidos de redes de datos industriales, fibra óptica, calibración de precisión y automatización de plantas.
+
+### 2.5. Soldadura Calificada y Montajes Especiales
+- Servicios de soldadura industrial de alta exigencia en aceros al carbono, aceros inoxidables y aleaciones especiales mediante procesos TIG (GTAW), SMAW (eléctrica) y oxiacetilénica.
+- Despliegue operativo de plantas de tratamiento de agua y efluentes industriales.
+- Montaje de balizamiento normalizado, torres y antenas de radioenlace y Shelters de Comunicaciones.
+
+---
+
+## 3. Casos de Éxito y Obras Ejecutadas
+
+### Caso 1: Fiscalía de Estado — Provincia de Buenos Aires
+- **Ubicación**: Calle 49 y 16, La Plata, Provincia de Buenos Aires.
+- **Equipamiento principal**: Grupo Electrógeno a Gas marca **CETEC**.
+- **Alcance técnico**:
+  - Operativo de logística vial e izaje de gran porte mediante grúa telescópica para el posicionamiento del grupo electrógeno.
+  - Montaje electromecánico e instalación integral del equipo generador a gas CETEC.
+  - Adecuación de acometida de suministro de gas, tendido eléctrico de potencia y conexionado con tablero de transferencia automática.
+  - Puesta en marcha, ensayos de funcionamiento bajo carga y calibración de sistemas de seguridad.
+
+### Caso 2: Poder Judicial de la Provincia de Buenos Aires
+- **Ubicación**: Departamento Judicial La Plata (Edificio Palacio, Fuero Penal y Dirección General de Asesoría Pericial).
+- **Plazo de obra**: 6 meses (cumplimiento estricto de pliegos técnicos PBA).
+- **Alcance técnico**:
+  - Reparación exhaustiva y puesta en valor en salas de calderas del Edificio Palacio y del Fuero Penal.
+  - Provisión e instalación de sistemas inteligentes de detección de gases y ventilación mecánica en subsuelos.
+  - Desmonte, retiro y ejecución de nueva aislación térmica integral en calderas principales.
+  - Reemplazo total de calderas en la Dirección General de Asesoría Pericial.
+
+### Caso 3: Minicuotas Ribeiro SAIC
+- **Ubicación**: Depósito Logístico Bosques (Provincia de Buenos Aires) y sucursales a nivel nacional.
+- **Alcance técnico**:
+  - Montaje de red integral de lucha contra incendios en el centro logístico de Bosques.
+  - Provisión e instalación de bombas de incendio de alto caudal.
+  - Ampliación de la red perimetral e interna de hidrantes para máxima cobertura operativa.
+  - Construcción civil de base y montaje de tanque de reserva de agua de 150 m³.
+  - Servicios de mantenimiento preventivo y correctivo en electricidad, pintura y obras civiles.
+
+### Caso 4: Benito Roggio Ambiental (BRA)
+- **Ubicación**: Complejo Ambiental CEAMSE Norte 3 (Área Metropolitana de Buenos Aires) y Planta Mar del Plata.
+- **Alcance técnico**:
+  - Montaje electromecánico y puesta en marcha de estación de quemador de gases en el complejo CEAMSE Norte 3.
+  - Montaje de infraestructura de quemador de gases para la planta de tratamiento de Mar del Plata.
+  - Implementación, conexionado e instalación de sistemas de control avanzados provistos por John Zink.
+
+### Caso 5: Grupo Estisol
+- **Ubicación**: Plantas industriales de Tucumán, Pilar (Buenos Aires) y Nueva Pompeya (CABA).
+- **Alcance técnico**:
+  - Montajes industriales complejos de calderas de vapor y tanques de almacenamiento de gran volumen.
+  - Provisión e instalación de sistemas de bombeo industrial.
+  - Montaje mecánico de precisión de máquinas expansoras en las plantas de Tucumán, Pilar y Pompeya.
+
+---
+
+## 4. Cómo Solicitar una Cotización o Visita Técnica
+Para presupuestos de obras civiles, montajes electromecánicos, mantenimiento industrial o participación en licitaciones públicas y privadas:
+- **Formulario Web de Cotización**: https://afconstruccionesyservicios.com.ar/#contacto
+- **Correo Electrónico**: afconstruccionesyservicios@gmail.com
+- **WhatsApp Directo / Teléfonos**: +54 9 221 303-5814 / +54 9 221 506-7151
+- **Planta Industrial**: Calle 530 N° 3062, La Plata, Provincia de Buenos Aires, Argentina.
+- **Domicilio Legal**: Av. 25 N° 246 e/ 529 y 530, La Plata, Provincia de Buenos Aires, Argentina.

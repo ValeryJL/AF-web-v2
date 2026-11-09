@@ -478,6 +478,118 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // 7. Quote Request Form (Email + WhatsApp)
+    const quoteForm = document.getElementById('quote-form');
+    const quoteWaBtn = document.getElementById('quote-whatsapp-btn');
+    const quoteStatus = document.getElementById('quote-status');
+
+    if (quoteForm) {
+        const getQuoteData = () => ({
+            nombre: (document.getElementById('quote-name')?.value || '').trim(),
+            empresa: (document.getElementById('quote-company')?.value || '').trim(),
+            telefono: (document.getElementById('quote-phone')?.value || '').trim(),
+            email: (document.getElementById('quote-email')?.value || '').trim(),
+            servicio: (document.getElementById('quote-service')?.value || '').trim(),
+            ubicacion: (document.getElementById('quote-location')?.value || '').trim(),
+            mensaje: (document.getElementById('quote-message')?.value || '').trim()
+        });
+
+        const showQuoteStatus = (msg, isError = false) => {
+            if (!quoteStatus) return;
+            quoteStatus.textContent = msg;
+            quoteStatus.className = `quote-status is-visible ${isError ? 'is-error' : 'is-success'}`;
+        };
+
+        if (quoteWaBtn) {
+            quoteWaBtn.addEventListener('click', () => {
+                if (!quoteForm.reportValidity()) return;
+                const d = getQuoteData();
+                const lines = [
+                    'Hola *AF Construcciones y Servicios*, quisiera solicitar una cotización:',
+                    '',
+                    `• *Nombre:* ${d.nombre}`,
+                    d.empresa ? `• *Empresa/Organismo:* ${d.empresa}` : null,
+                    `• *Teléfono:* ${d.telefono}`,
+                    `• *E-mail:* ${d.email}`,
+                    `• *Especialidad:* ${d.servicio}`,
+                    d.ubicacion ? `• *Ubicación de obra:* ${d.ubicacion}` : null,
+                    `• *Detalle:* ${d.mensaje}`
+                ].filter(Boolean).join('\n');
+
+                const waUrl = `https://wa.me/5492213035814?text=${encodeURIComponent(lines)}`;
+                window.open(waUrl, '_blank', 'noopener,noreferrer');
+            });
+        }
+
+        quoteForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!quoteForm.reportValidity()) return;
+
+            const d = getQuoteData();
+            const submitBtn = quoteForm.querySelector('.quote-submit-btn');
+            const originalText = submitBtn ? submitBtn.innerHTML : '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            }
+
+            try {
+                if (window.location.protocol === 'file:') {
+                    showQuoteStatus(
+                        'Para enviar por correo directo sin abrir programas, probalo desde la web publicada (https://afconstruccionesyservicios.com.ar) o con un servidor local (http://localhost).',
+                        true
+                    );
+                    return;
+                }
+                const response = await fetch('https://formsubmit.co/ajax/afconstruccionesyservicios@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `📋 Solicitud de Cotización: ${d.servicio} — ${d.empresa || d.nombre}`,
+                        _replyto: d.email,
+                        _template: 'box',
+                        _captcha: 'false',
+                        'Nombre y Apellido': d.nombre,
+                        'Empresa u Organismo': d.empresa || 'Particular / No especificada',
+                        'Teléfono / WhatsApp': d.telefono,
+                        'Correo Electrónico': d.email,
+                        'Especialidad Solicitada': d.servicio,
+                        'Ubicación de la Obra': d.ubicacion || 'No especificada',
+                        'Detalle del Proyecto': d.mensaje
+                    })
+                });
+
+                const result = await response.json().catch(() => ({}));
+                if (response.ok && (result.success === true || result.success === 'true')) {
+                    showQuoteStatus('¡Solicitud enviada con éxito! Nos pondremos en contacto a la brevedad.');
+                    quoteForm.reset();
+                } else if (result.message && result.message.toLowerCase().includes('activation')) {
+                    showQuoteStatus(
+                        '¡Casi listo! Se envió un correo de activación por única vez a afconstruccionesyservicios@gmail.com. Hacé clic en "Activate Form" dentro de ese mail para habilitar los envíos directos.'
+                    );
+                } else {
+                    showQuoteStatus(
+                        'No se pudo enviar el correo en este momento. Podés enviarnos tu consulta directamente con el botón de WhatsApp.',
+                        true
+                    );
+                }
+            } catch (err) {
+                showQuoteStatus(
+                    'No se pudo conectar con el servidor de correo. Por favor usá el botón "Enviar por WhatsApp".',
+                    true
+                );
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            }
+        });
+    }
 });
 
 function setMobileModalView(container, view) {
