@@ -880,38 +880,222 @@ img {
     transform: none;
 }
 
+/* Mobile Modal Switcher Elements (hidden on desktop) */
+.mobile-modal-header,
+.mobile-min-bar {
+    display: none;
+}
+
 /* Responsive Consolidation */
 @media (max-width: 900px) {
+    body.modal-open .whatsapp-float {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
     .modal-overlay {
-        padding: 2.5vh 2.5vw;
+        padding: 2.5vh 3vw;
         overflow: hidden;
     }
 
     .modal-container {
         flex-direction: column;
-        height: 95vh;
+        height: 92vh;
         max-height: 95vh;
         overflow: hidden;
+        background: #111;
     }
 
-    .modal-gallery {
+    .modal-close {
+        top: 10px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        z-index: 30;
+    }
+
+    .modal-close:hover {
+        background: var(--color-secondary);
+        color: var(--color-primary);
+    }
+
+    /* Top Segmented Bar */
+    .mobile-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 56px 10px 12px;
+        background: #181a20;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+        z-index: 20;
+    }
+
+    .mobile-modal-tabs {
+        display: flex;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 3px;
+        gap: 4px;
+    }
+
+    .mobile-tab-btn {
+        flex: 1;
+        border: none;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: var(--font-heading);
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 7px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.25s ease;
+    }
+
+    .mobile-tab-btn.active {
+        background: var(--color-secondary);
+        color: var(--color-primary);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Minimized Collapsible Bars (Top/Bottom) */
+    .mobile-min-bar {
+        width: 100%;
+        border: none;
+        padding: 13px 16px;
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        cursor: pointer;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-shrink: 0;
+        transition: background 0.2s ease;
+    }
+
+    .mobile-min-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mobile-min-cta {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+        padding: 4px 10px;
+        border-radius: 20px;
+    }
+
+    .mobile-min-gallery {
+        background: #22262f;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-min-gallery .mobile-min-label i {
+        color: var(--color-secondary);
+    }
+
+    .mobile-min-gallery .mobile-min-cta {
+        background: rgba(255, 220, 0, 0.15);
+        color: var(--color-secondary);
+    }
+
+    .mobile-min-info {
+        background: white;
+        color: var(--color-primary);
+        border-top: 2px solid var(--color-secondary);
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-min-info .mobile-min-label i {
+        color: var(--color-accent-dark);
+    }
+
+    .mobile-min-info .mobile-min-cta {
+        background: var(--color-secondary);
+        color: var(--color-primary);
+    }
+
+    /* View State 1: GALLERY ACTIVE (Gallery expanded, Info minimized at bottom) */
+    .modal-container[data-mobile-view="gallery"] .modal-gallery {
         flex: 1;
         height: auto;
         min-height: 0;
+    }
+
+    .modal-container[data-mobile-view="gallery"] .mobile-min-gallery {
+        display: none;
+    }
+
+    .modal-container[data-mobile-view="gallery"] .modal-info {
+        flex: 0 0 auto;
+        height: auto;
+        padding: 0;
+        border: none;
+        background: white;
+    }
+
+    .modal-container[data-mobile-view="gallery"] .mobile-min-info {
+        display: flex;
+    }
+
+    .modal-container[data-mobile-view="gallery"] .modal-info > :not(.mobile-min-info) {
+        display: none;
+    }
+
+    /* View State 2: INFO ACTIVE (Gallery minimized at top, Info expanded) */
+    .modal-container[data-mobile-view="info"] .modal-gallery {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 0;
+    }
+
+    .modal-container[data-mobile-view="info"] .mobile-min-gallery {
+        display: flex;
+    }
+
+    .modal-container[data-mobile-view="info"] .modal-gallery .project-carousel {
+        display: none;
+    }
+
+    .modal-container[data-mobile-view="info"] .modal-info {
+        flex: 1;
+        height: auto;
+        min-height: 0;
+        padding: 1.25rem 1.25rem;
+        border-left: none;
+        border-top: none;
+        background: white;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+
+    .modal-container[data-mobile-view="info"] .mobile-min-info {
+        display: none;
     }
 
     .modal-gallery .carousel-main {
         flex: 1;
         min-height: 0;
-    }
-
-    .modal-info {
-        flex: none;
-        height: auto;
-        padding: 1rem 1.25rem;
-        border-left: none;
-        border-top: 1px solid var(--color-border);
-        overflow: hidden;
+        padding: 8px;
     }
 }
 

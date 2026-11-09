@@ -186,12 +186,82 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // 5b. Mobile Modal View Switcher (Gallery <-> Description)
+    const modalContainers = document.querySelectorAll('.modal-container');
+    modalContainers.forEach(container => {
+        container.setAttribute('data-mobile-view', 'gallery');
+        const gallery = container.querySelector('.modal-gallery');
+        const info = container.querySelector('.modal-info');
+        const titleEl = container.querySelector('.modal-title');
+        const projectTitle = titleEl ? titleEl.textContent.trim() : 'Obra';
+
+        // Top segmented bar for mobile
+        const mobileHeader = document.createElement('div');
+        mobileHeader.className = 'mobile-modal-header';
+        mobileHeader.innerHTML = `
+            <div class="mobile-modal-tabs">
+                <button type="button" class="mobile-tab-btn active" data-target-view="gallery">
+                    <i class="fas fa-images"></i> Galería
+                </button>
+                <button type="button" class="mobile-tab-btn" data-target-view="info">
+                    <i class="fas fa-align-left"></i> Descripción
+                </button>
+            </div>
+        `;
+        container.insertBefore(mobileHeader, container.firstChild);
+
+        // Minimized bar for Gallery (shown at top when Description is active)
+        if (gallery) {
+            const minGalleryBar = document.createElement('button');
+            minGalleryBar.type = 'button';
+            minGalleryBar.className = 'mobile-min-bar mobile-min-gallery';
+            minGalleryBar.innerHTML = `
+                <span class="mobile-min-label"><i class="fas fa-camera"></i> Galería de Fotos (${container.querySelectorAll('.carousel-thumb').length})</span>
+                <span class="mobile-min-cta">Ver fotos <i class="fas fa-chevron-down"></i></span>
+            `;
+            gallery.insertBefore(minGalleryBar, gallery.firstChild);
+            minGalleryBar.addEventListener('click', () => setMobileModalView(container, 'gallery'));
+        }
+
+        // Minimized bar for Description (shown at bottom when Gallery is active)
+        if (info) {
+            const minInfoBar = document.createElement('button');
+            minInfoBar.type = 'button';
+            minInfoBar.className = 'mobile-min-bar mobile-min-info';
+            minInfoBar.innerHTML = `
+                <span class="mobile-min-label"><i class="fas fa-info-circle"></i> ${projectTitle}</span>
+                <span class="mobile-min-cta">Ver descripción <i class="fas fa-chevron-up"></i></span>
+            `;
+            info.insertBefore(minInfoBar, info.firstChild);
+            minInfoBar.addEventListener('click', () => setMobileModalView(container, 'info'));
+        }
+
+        const tabBtns = mobileHeader.querySelectorAll('.mobile-tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setMobileModalView(container, btn.getAttribute('data-target-view'));
+            });
+        });
+    });
 });
+
+function setMobileModalView(container, view) {
+    container.setAttribute('data-mobile-view', view);
+    const tabBtns = container.querySelectorAll('.mobile-tab-btn');
+    tabBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-target-view') === view);
+    });
+}
 
 // 6. Project Modals External Triggers
 function openProjectModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
+        const container = modal.querySelector('.modal-container');
+        if (container) {
+            setMobileModalView(container, 'gallery');
+        }
         modal.classList.add('active');
         document.body.classList.add('modal-open');
     }
