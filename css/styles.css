@@ -770,9 +770,77 @@ img {
     right: 16px;
 }
 
+.carousel-pause-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 24, 33, 0.65);
+    backdrop-filter: blur(6px);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.carousel-pause-btn:hover,
+.carousel-pause-btn.is-paused {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-secondary);
+}
+
+.carousel-progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.carousel-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--color-secondary);
+}
+
+.carousel-progress-bar.is-running {
+    animation: carousel-timer-progress 15s linear forwards;
+    animation-play-state: paused;
+}
+
+.modal-overlay.active .carousel-main:not(.is-paused):not(.is-loading) .carousel-progress-bar.is-running {
+    animation-play-state: running;
+}
+
+@keyframes carousel-timer-progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
 .carousel-thumbnails {
     display: flex;
+    width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
     padding: 10px;
     background: #222;
     gap: 10px;

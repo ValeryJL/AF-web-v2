@@ -131,8 +131,38 @@ document.addEventListener('DOMContentLoaded', () => {
         spinner.className = 'carousel-spinner';
         carouselMain.appendChild(spinner);
 
+        // Create small pause/play button for 15s auto-advance timer
+        const pauseBtn = document.createElement('button');
+        pauseBtn.type = 'button';
+        pauseBtn.className = 'carousel-pause-btn';
+        pauseBtn.setAttribute('aria-label', 'Pausar presentación automática');
+        pauseBtn.setAttribute('title', 'Pausar presentación (15s)');
+        pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        carouselMain.appendChild(pauseBtn);
+
+        // Create thin progress bar at the bottom of .carousel-main
+        const progressTrack = document.createElement('div');
+        progressTrack.className = 'carousel-progress-track';
+        const progressBar = document.createElement('div');
+        progressBar.className = 'carousel-progress-bar';
+        progressTrack.appendChild(progressBar);
+        carouselMain.appendChild(progressTrack);
+
         let currentIndex = 0;
         let loadRequestId = 0;
+        let isPaused = false;
+
+        const restartProgressBar = () => {
+            progressBar.classList.remove('is-running');
+            // Force reflow so the CSS animation restarts cleanly from 0%
+            void progressBar.offsetWidth;
+            progressBar.classList.add('is-running');
+        };
+
+        progressBar.addEventListener('animationend', () => {
+            let nextIndex = (currentIndex + 1) % thumbs.length;
+            updateCarousel(nextIndex, true);
+        });
 
         const updateCarousel = (index, shouldScrollThumb = true) => {
             thumbs.forEach(t => t.classList.remove('active'));
@@ -143,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const requestId = ++loadRequestId;
             mainImg.style.opacity = '0';
             carouselMain.classList.add('is-loading');
+            progressBar.classList.remove('is-running');
 
             const preloadImg = new Image();
             preloadImg.onload = () => {
@@ -150,12 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainImg.src = fullSrc;
                 carouselMain.classList.remove('is-loading');
                 mainImg.style.opacity = '1';
+                restartProgressBar();
             };
             preloadImg.onerror = () => {
                 if (requestId !== loadRequestId) return;
                 mainImg.src = fullSrc;
                 carouselMain.classList.remove('is-loading');
                 mainImg.style.opacity = '1';
+                restartProgressBar();
             };
             preloadImg.src = fullSrc;
 
@@ -165,26 +198,69 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        // Expose reset method on carousel element so openProjectModal can restart timer from 0%
+        carousel._restartTimer = restartProgressBar;
+
         // Initialize without scrolling the page
         updateCarousel(0, false);
+
+        pauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isPaused = !isPaused;
+            carouselMain.classList.toggle('is-paused', isPaused);
+            pauseBtn.classList.toggle('is-paused', isPaused);
+            pauseBtn.innerHTML = isPaused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+            pauseBtn.setAttribute('title', isPaused ? 'Reanudar presentación (15s)' : 'Pausar presentación (15s)');
+            pauseBtn.setAttribute('aria-label', isPaused ? 'Reanudar presentación automática' : 'Pausar presentación automática');
+        });
 
         thumbs.forEach((thumb, index) => {
             thumb.addEventListener('click', () => updateCarousel(index, true));
         });
 
+        const goNext = () => {
+            let nextIndex = (currentIndex + 1) % thumbs.length;
+            updateCarousel(nextIndex, true);
+        };
+
+        const goPrev = () => {
+            let prevIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
+            updateCarousel(prevIndex, true);
+        };
+
         if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                let nextIndex = (currentIndex + 1) % thumbs.length;
-                updateCarousel(nextIndex, true);
-            });
+            nextBtn.addEventListener('click', goNext);
         }
 
         if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                let prevIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
-                updateCarousel(prevIndex, true);
-            });
+            prevBtn.addEventListener('click', goPrev);
         }
+
+        // Touch swipe support on .carousel-main for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        carouselMain.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        carouselMain.addEventListener('touchend', (e) => {
+            if (e.changedTouches.length === 1) {
+                const deltaX = e.changedTouches[0].clientX - touchStartX;
+                const deltaY = e.changedTouches[0].clientY - touchStartY;
+                // Trigger horizontal swipe if horizontal movement exceeds 40px and dominates vertical
+                if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX < 0) {
+                        goNext();
+                    } else {
+                        goPrev();
+                    }
+                }
+            }
+        }, { passive: true });
     });
 
     // 5b. Mobile Modal View Switcher (Gallery <-> Description)
@@ -261,6 +337,10 @@ function openProjectModal(modalId) {
         const container = modal.querySelector('.modal-container');
         if (container) {
             setMobileModalView(container, 'gallery');
+        }
+        const carousel = modal.querySelector('.project-carousel');
+        if (carousel && typeof carousel._restartTimer === 'function') {
+            carousel._restartTimer();
         }
         modal.classList.add('active');
         document.body.classList.add('modal-open');
