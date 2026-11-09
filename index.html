@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AF Construcciones y Servicios</title>
     <link rel="icon" href="./assets/favicon.png" type="image/png">
-    <link rel="stylesheet" href="css/styles.css?v=20261109b">
+    <link rel="stylesheet" href="css/styles.css?v=20261109d">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
@@ -135,7 +135,7 @@
                     <div class="card project-card" data-category="quimica" style="cursor: pointer;"
                         onclick="openProjectModal('modal-pj')">
                         <div class="project-img-wrapper">
-                            <img src="assets/projects/poder_judicial.jpg" alt="Poder Judicial" class="project-img">
+                            <img src="assets/obras/poder-judicial/foto-04.jpg" alt="Poder Judicial" class="project-img">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Poder Judicial</h3>
@@ -145,7 +145,7 @@
                     <div class="card project-card" data-category="servicios" style="cursor: pointer;"
                         onclick="openProjectModal('modal-ribeiro')">
                         <div class="project-img-wrapper">
-                            <img src="assets/projects/ribeiro.jpg" alt="Minicuotas Ribeiro" class="project-img">
+                            <img src="assets/obras/ribeiro/foto-01.jpg" alt="Minicuotas Ribeiro" class="project-img">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Minicuotas Ribeiro</h3>
@@ -155,7 +155,7 @@
                     <div class="card project-card" data-category="quimica" style="cursor: pointer;"
                         onclick="openProjectModal('modal-bra')">
                         <div class="project-img-wrapper">
-                            <img src="assets/projects/bra.jpg" alt="BRA" class="project-img">
+                            <img src="assets/obras/bra/foto-01.jpg" alt="BRA" class="project-img">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Sanatorio de Diagnóstico</h3>
@@ -165,7 +165,7 @@
                     <div class="card project-card" data-category="quimica" style="cursor: pointer;"
                         onclick="openProjectModal('modal-estisol')">
                         <div class="project-img-wrapper">
-                            <img src="assets/projects/estisol.jpg" alt="Estisol" class="project-img">
+                            <img src="assets/obras/estisol/foto-01.jpg" alt="Estisol" class="project-img">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Grupo Estisol</h3>
@@ -286,29 +286,29 @@
             <div class="modal-gallery">
                 <div class="project-carousel">
                     <div class="carousel-main">
-                        <button class="carousel-btn prev-btn">&#10094;</button>
+                        <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <img class="carousel-main-img" src="" alt="Main Project Image" />
-                        <button class="carousel-btn next-btn">&#10095;</button>
+                        <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="carousel-thumbnails">
                         <img class="carousel-thumb active"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-314-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-314-150x150.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-313-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-313-150x150.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-354-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-354-150x150.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-309-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-309-150x150.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-311-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-311-150x150.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2016/09/fotos-299-476x476.jpg"
-                            src="assets/wp-content/uploads/2016/09/fotos-299-150x150.jpg" />
+                            data-fullsrc="assets/obras/poder-judicial/foto-01.jpg"
+                            src="assets/obras/poder-judicial/foto-01.jpg" alt="Poder Judicial - Obra 1" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/poder-judicial/foto-02.jpg"
+                            src="assets/obras/poder-judicial/foto-02.jpg" alt="Poder Judicial - Obra 2" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/poder-judicial/foto-03.jpg"
+                            src="assets/obras/poder-judicial/foto-03.jpg" alt="Poder Judicial - Obra 3" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/poder-judicial/foto-04.jpg"
+                            src="assets/obras/poder-judicial/foto-04.jpg" alt="Poder Judicial - Obra 4" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/poder-judicial/foto-05.jpg"
+                            src="assets/obras/poder-judicial/foto-05.jpg" alt="Poder Judicial - Obra 5" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/poder-judicial/foto-06.jpg"
+                            src="assets/obras/poder-judicial/foto-06.jpg" alt="Poder Judicial - Obra 6" />
                     </div>
                 </div>
             </div>
@@ -350,35 +350,44 @@
             <div class="modal-gallery">
                 <div class="project-carousel">
                     <div class="carousel-main">
-                        <button class="carousel-btn prev-btn">&#10094;</button>
+                        <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <img class="carousel-main-img" src="" alt="Main Project Image" />
-                        <button class="carousel-btn next-btn">&#10095;</button>
+                        <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="carousel-thumbnails">
                         <img class="carousel-thumb active"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Foto0295-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto0295-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Foto0296-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto0296-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0078.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0078-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0079.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0079-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0080.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0080-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0081.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0081-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0083.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0083-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0093.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0093-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0094j.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0094j-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0095.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0095-300x225.jpg" />
-                        <img class="carousel-thumb" data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0096.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0096-300x225.jpg" />
+                            data-fullsrc="assets/obras/ribeiro/foto-01.jpg"
+                            src="assets/obras/ribeiro/foto-01.jpg" alt="Ribeiro - Obra 1" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-02.jpg"
+                            src="assets/obras/ribeiro/foto-02.jpg" alt="Ribeiro - Obra 2" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-03.jpg"
+                            src="assets/obras/ribeiro/foto-03.jpg" alt="Ribeiro - Obra 3" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-04.jpg"
+                            src="assets/obras/ribeiro/foto-04.jpg" alt="Ribeiro - Obra 4" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-05.jpg"
+                            src="assets/obras/ribeiro/foto-05.jpg" alt="Ribeiro - Obra 5" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-06.jpg"
+                            src="assets/obras/ribeiro/foto-06.jpg" alt="Ribeiro - Obra 6" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-07.jpg"
+                            src="assets/obras/ribeiro/foto-07.jpg" alt="Ribeiro - Obra 7" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-08.jpg"
+                            src="assets/obras/ribeiro/foto-08.jpg" alt="Ribeiro - Obra 8" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-09.jpg"
+                            src="assets/obras/ribeiro/foto-09.jpg" alt="Ribeiro - Obra 9" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-10.jpg"
+                            src="assets/obras/ribeiro/foto-10.jpg" alt="Ribeiro - Obra 10" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/ribeiro/foto-11.jpg"
+                            src="assets/obras/ribeiro/foto-11.jpg" alt="Ribeiro - Obra 11" />
                     </div>
                 </div>
             </div>
@@ -419,26 +428,26 @@
             <div class="modal-gallery">
                 <div class="project-carousel">
                     <div class="carousel-main">
-                        <button class="carousel-btn prev-btn">&#10094;</button>
+                        <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <img class="carousel-main-img" src="" alt="Main Project Image" />
-                        <button class="carousel-btn next-btn">&#10095;</button>
+                        <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="carousel-thumbnails">
                         <img class="carousel-thumb active"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Imagen-654-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/Imagen-654-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Imagen-655-e1498520870839-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/Imagen-655-e1498520870839-225x300.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Imagen-661-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/Imagen-661-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Imagen-662-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/Imagen-662-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Imagen-731-e1498520856239-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/Imagen-731-e1498520856239-225x300.jpg" />
+                            data-fullsrc="assets/obras/bra/foto-01.jpg"
+                            src="assets/obras/bra/foto-01.jpg" alt="BRA - Obra 1" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/bra/foto-02.jpg"
+                            src="assets/obras/bra/foto-02.jpg" alt="BRA - Obra 2" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/bra/foto-03.jpg"
+                            src="assets/obras/bra/foto-03.jpg" alt="BRA - Obra 3" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/bra/foto-04.jpg"
+                            src="assets/obras/bra/foto-04.jpg" alt="BRA - Obra 4" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/bra/foto-05.jpg"
+                            src="assets/obras/bra/foto-05.jpg" alt="BRA - Obra 5" />
                     </div>
                 </div>
             </div>
@@ -478,50 +487,47 @@
             <div class="modal-gallery">
                 <div class="project-carousel">
                     <div class="carousel-main">
-                        <button class="carousel-btn prev-btn">&#10094;</button>
+                        <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <img class="carousel-main-img" src="" alt="Main Project Image" />
-                        <button class="carousel-btn next-btn">&#10095;</button>
+                        <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="carousel-thumbnails">
                         <img class="carousel-thumb active"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/Foto-0217.jpg"
-                            src="assets/wp-content/uploads/2017/06/Foto-0217-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-003-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-003-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-004-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-004-225x300.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-015-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-015-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-022-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-022-225x300.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-024-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-024-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-031-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-031-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-035-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-035-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-037-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-037-225x300.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-039-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-039-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-086-768x1024.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-086-225x300.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-225-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-225-300x225.jpg" />
-                        <img class="carousel-thumb"
-                            data-fullsrc="assets/wp-content/uploads/2017/06/fotos-296-1024x768.jpg"
-                            src="assets/wp-content/uploads/2017/06/fotos-296-300x225.jpg" />
+                            data-fullsrc="assets/obras/estisol/foto-01.jpg"
+                            src="assets/obras/estisol/foto-01.jpg" alt="Estisol - Obra 1" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-02.jpg"
+                            src="assets/obras/estisol/foto-02.jpg" alt="Estisol - Obra 2" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-03.jpg"
+                            src="assets/obras/estisol/foto-03.jpg" alt="Estisol - Obra 3" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-04.jpg"
+                            src="assets/obras/estisol/foto-04.jpg" alt="Estisol - Obra 4" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-05.jpg"
+                            src="assets/obras/estisol/foto-05.jpg" alt="Estisol - Obra 5" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-06.jpg"
+                            src="assets/obras/estisol/foto-06.jpg" alt="Estisol - Obra 6" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-07.jpg"
+                            src="assets/obras/estisol/foto-07.jpg" alt="Estisol - Obra 7" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-08.jpg"
+                            src="assets/obras/estisol/foto-08.jpg" alt="Estisol - Obra 8" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-09.jpg"
+                            src="assets/obras/estisol/foto-09.jpg" alt="Estisol - Obra 9" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-10.jpg"
+                            src="assets/obras/estisol/foto-10.jpg" alt="Estisol - Obra 10" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-11.jpg"
+                            src="assets/obras/estisol/foto-11.jpg" alt="Estisol - Obra 11" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/estisol/foto-12.jpg"
+                            src="assets/obras/estisol/foto-12.jpg" alt="Estisol - Obra 12" />
                     </div>
                 </div>
             </div>
@@ -557,7 +563,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="js/app.js?v=20261109b"></script>
+    <script src="js/app.js?v=20261109d"></script>
 </body>
 
 </html>

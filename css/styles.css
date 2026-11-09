@@ -495,8 +495,8 @@ img {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     backdrop-filter: blur(5px);
-    overflow-y: auto;
-    padding: 2rem;
+    overflow: hidden;
+    padding: 2.5vh 2vw;
 }
 
 .modal-overlay.active {
@@ -507,7 +507,9 @@ img {
 .modal-container {
     background: white;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1150px;
+    height: min(92vh, 740px);
+    max-height: 95vh;
     border-radius: 12px;
     position: relative;
     display: flex;
@@ -549,11 +551,15 @@ img {
 }
 
 .modal-gallery {
-    flex: 1.2;
+    flex: 1.25;
     background: #000;
     padding: 0;
     position: relative;
     min-width: 0;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-gallery .project-carousel {
@@ -561,6 +567,7 @@ img {
     border-radius: 0;
     box-shadow: none;
     height: 100%;
+    min-height: 0;
     display: flex;
     flex-direction: column;
 }
@@ -568,52 +575,58 @@ img {
 .modal-gallery .carousel-main {
     flex: 1;
     height: auto;
-    min-height: 400px;
+    min-height: 0;
+    overflow: hidden;
+    padding: 12px;
 }
 
 .modal-gallery .carousel-thumbnails {
+    flex-shrink: 0;
     background: #111;
 }
 
 .modal-info {
-    flex: 0.8;
-    padding: 3rem 2.5rem;
+    flex: 0.85;
+    height: 100%;
+    min-height: 0;
+    padding: clamp(1rem, 2.5vh, 2.2rem) clamp(1.25rem, 2.2vw, 2.2rem);
     background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-left: 1px solid var(--color-border);
+    overflow: hidden;
 }
 
 .modal-info .project-category {
     color: var(--color-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     display: block;
 }
 
 .modal-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 2.6vh, 2rem);
     color: var(--color-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
     font-family: var(--font-heading);
     line-height: 1.2;
 }
 
 .modal-desc p {
-    font-size: 1.05rem;
+    font-size: clamp(0.88rem, 1.55vh, 1rem);
     color: var(--color-text);
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
+    margin-bottom: clamp(0.6rem, 1.5vh, 1.1rem);
+    line-height: 1.55;
 }
 
 .modal-desc h4 {
     color: var(--color-primary);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 1.65vh, 1.05rem);
+    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
 }
 
 .modal-desc ul {
@@ -623,10 +636,11 @@ img {
 
 .modal-desc ul li {
     position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
+    padding-left: 1.4rem;
+    margin-bottom: clamp(0.3rem, 0.9vh, 0.6rem);
+    font-size: clamp(0.85rem, 1.45vh, 0.95rem);
     color: var(--color-text-light);
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .modal-desc ul li::before {
@@ -639,16 +653,16 @@ img {
 
 /* Technical Details in Modals */
 .technical-details {
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: clamp(0.6rem, 1.5vh, 1.2rem);
+    padding-top: clamp(0.6rem, 1.5vh, 1.2rem);
     border-top: 1px solid var(--color-border);
 }
 
 .tech-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    font-size: 0.9rem;
+    gap: clamp(8px, 1.2vh, 14px);
+    font-size: clamp(0.8rem, 1.35vh, 0.9rem);
 }
 
 .tech-item strong {
@@ -665,7 +679,7 @@ img {
 .project-carousel {
     position: relative;
     width: 100%;
-    margin: 40px auto;
+    margin: 0 auto;
     background: #000;
     font-family: inherit;
 }
@@ -673,7 +687,8 @@ img {
 .carousel-main {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 100%;
+    min-height: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -681,44 +696,78 @@ img {
 }
 
 .carousel-main img {
+    width: 100%;
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
 }
 
-.carousel-main img.fade-in {
+.carousel-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    margin-left: -22px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--color-secondary);
+    border-radius: 50%;
+    animation: carousel-spin 0.75s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 5;
+}
+
+.carousel-main.is-loading .carousel-spinner {
     opacity: 1;
+}
+
+@keyframes carousel-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 24, 33, 0.65);
+    backdrop-filter: blur(6px);
     color: white;
-    border: none;
-    padding: 15px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    font-size: 24px;
+    font-size: 16px;
+    line-height: 1;
     border-radius: 50%;
-    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
     z-index: 10;
 }
 
 .carousel-btn:hover {
     background: var(--color-secondary);
     color: var(--color-primary);
-    transform: translateY(-50%) scale(1.1);
+    border-color: var(--color-secondary);
+    transform: translateY(-50%) scale(1.08);
 }
 
 .prev-btn {
-    left: 15px;
+    left: 16px;
 }
 
 .next-btn {
-    right: 15px;
+    right: 16px;
 }
 
 .carousel-thumbnails {
@@ -743,8 +792,9 @@ img {
 }
 
 .carousel-thumb {
-    height: 80px;
-    width: 120px;
+    height: 68px;
+    width: 100px;
+    flex-shrink: 0;
     object-fit: cover;
     border-radius: 6px;
     cursor: pointer;
@@ -832,15 +882,22 @@ img {
 
 /* Responsive Consolidation */
 @media (max-width: 900px) {
+    .modal-overlay {
+        padding: 2.5vh 2.5vw;
+        overflow: hidden;
+    }
+
     .modal-container {
         flex-direction: column;
-        max-height: none;
+        height: 95vh;
+        max-height: 95vh;
+        overflow: hidden;
     }
 
     .modal-gallery {
-        flex: none;
-        height: 60vh;
-        min-height: 350px;
+        flex: 1;
+        height: auto;
+        min-height: 0;
     }
 
     .modal-gallery .carousel-main {
@@ -850,13 +907,11 @@ img {
 
     .modal-info {
         flex: none;
-        padding: 2rem;
+        height: auto;
+        padding: 1rem 1.25rem;
         border-left: none;
         border-top: 1px solid var(--color-border);
-    }
-
-    .modal-overlay {
-        padding: 1rem;
+        overflow: hidden;
     }
 }
 
@@ -883,18 +938,16 @@ img {
         display: block;
     }
 
-    .carousel-main {
-        height: 300px;
-    }
-
     .carousel-btn {
-        padding: 10px 15px;
-        font-size: 18px;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        font-size: 14px;
     }
 
     .carousel-thumb {
-        height: 60px;
-        width: 90px;
+        height: 56px;
+        width: 84px;
     }
 
     .whatsapp-float {

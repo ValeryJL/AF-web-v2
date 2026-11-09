@@ -118,49 +118,71 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Custom Carousel Logic for Project Modals
     const carousels = document.querySelectorAll('.project-carousel');
     carousels.forEach(carousel => {
+        const carouselMain = carousel.querySelector('.carousel-main');
         const mainImg = carousel.querySelector('.carousel-main-img');
         const prevBtn = carousel.querySelector('.prev-btn');
         const nextBtn = carousel.querySelector('.next-btn');
         const thumbs = carousel.querySelectorAll('.carousel-thumb');
 
-        if (!mainImg || thumbs.length === 0) return;
+        if (!carouselMain || !mainImg || thumbs.length === 0) return;
+
+        // Create loading spinner inside .carousel-main
+        const spinner = document.createElement('div');
+        spinner.className = 'carousel-spinner';
+        carouselMain.appendChild(spinner);
 
         let currentIndex = 0;
+        let loadRequestId = 0;
 
-        const updateCarousel = (index) => {
+        const updateCarousel = (index, shouldScrollThumb = true) => {
             thumbs.forEach(t => t.classList.remove('active'));
             const activeThumb = thumbs[index];
             activeThumb.classList.add('active');
-            const fullSrc = activeThumb.getAttribute('data-fullsrc');
+            const fullSrc = activeThumb.getAttribute('data-fullsrc') || activeThumb.getAttribute('src');
 
-            mainImg.style.opacity = '0.5';
-            setTimeout(() => {
+            const requestId = ++loadRequestId;
+            mainImg.style.opacity = '0';
+            carouselMain.classList.add('is-loading');
+
+            const preloadImg = new Image();
+            preloadImg.onload = () => {
+                if (requestId !== loadRequestId) return;
                 mainImg.src = fullSrc;
+                carouselMain.classList.remove('is-loading');
                 mainImg.style.opacity = '1';
-            }, 150);
+            };
+            preloadImg.onerror = () => {
+                if (requestId !== loadRequestId) return;
+                mainImg.src = fullSrc;
+                carouselMain.classList.remove('is-loading');
+                mainImg.style.opacity = '1';
+            };
+            preloadImg.src = fullSrc;
 
             currentIndex = index;
-            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (shouldScrollThumb) {
+                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
         };
 
-        // Initialize
-        updateCarousel(0);
+        // Initialize without scrolling the page
+        updateCarousel(0, false);
 
         thumbs.forEach((thumb, index) => {
-            thumb.addEventListener('click', () => updateCarousel(index));
+            thumb.addEventListener('click', () => updateCarousel(index, true));
         });
 
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 let nextIndex = (currentIndex + 1) % thumbs.length;
-                updateCarousel(nextIndex);
+                updateCarousel(nextIndex, true);
             });
         }
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 let prevIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
-                updateCarousel(prevIndex);
+                updateCarousel(prevIndex, true);
             });
         }
     });
