@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AF Construcciones y Servicios</title>
     <link rel="icon" href="./assets/favicon.png" type="image/png">
-    <link rel="stylesheet" href="./css/styles.css?v=20261109h">
+    <link rel="stylesheet" href="./css/styles.css?v=20261109k">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
@@ -170,6 +170,16 @@
                         <div class="project-info">
                             <h3 class="project-title">Grupo Estisol</h3>
                             <p class="project-category">Construcción Industrial</p>
+                        </div>
+                    </div>
+                    <div class="card project-card" data-category="servicios" style="cursor: pointer;"
+                        onclick="openProjectModal('modal-fiscalia')">
+                        <div class="project-img-wrapper">
+                            <img src="assets/obras/fiscalia/foto-01.jpg" alt="Fiscalía de Estado" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Fiscalía de Estado</h3>
+                            <p class="project-category">Provincia de Buenos Aires</p>
                         </div>
                     </div>
                 </div>
@@ -559,11 +569,79 @@
         </div>
     </div>
 
+    <div id="modal-fiscalia" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeProjectModal('modal-fiscalia')"><i
+                    class="fas fa-times"></i></button>
+            <div class="modal-gallery">
+                <div class="project-carousel">
+                    <div class="carousel-main">
+                        <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <img class="carousel-main-img" src="" alt="Main Project Image" />
+                        <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-thumbnails">
+                        <img class="carousel-thumb active"
+                            data-fullsrc="assets/obras/fiscalia/foto-01.jpg"
+                            src="assets/obras/fiscalia/foto-01.jpg" alt="Fiscalía de Estado - Obra 1" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/fiscalia/foto-02.jpg"
+                            src="assets/obras/fiscalia/foto-02.jpg" alt="Fiscalía de Estado - Obra 2" />
+                        <img class="carousel-thumb" loading="lazy"
+                            data-fullsrc="assets/obras/fiscalia/foto-03.jpg"
+                            src="assets/obras/fiscalia/foto-03.jpg" alt="Fiscalía de Estado - Obra 3" />
+                        <div class="carousel-thumb carousel-thumb-video"
+                            data-fullsrc="assets/obras/fiscalia/video-01.mp4" title="Fiscalía de Estado - Video 1">
+                            <video preload="metadata" muted playsinline src="assets/obras/fiscalia/video-01.mp4#t=0.5"></video>
+                            <span class="thumb-play-icon"><i class="fas fa-play"></i></span>
+                        </div>
+                        <div class="carousel-thumb carousel-thumb-video"
+                            data-fullsrc="assets/obras/fiscalia/video-02.mp4" title="Fiscalía de Estado - Video 2">
+                            <video preload="metadata" muted playsinline src="assets/obras/fiscalia/video-02.mp4#t=0.5"></video>
+                            <span class="thumb-play-icon"><i class="fas fa-play"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-info">
+                <span class="project-category">Provincia de Buenos Aires</span>
+                <h2 class="modal-title">Fiscalía de Estado</h2>
+                <div class="modal-desc">
+                    <p>Provisión de ingeniería, logística de izaje, montaje e instalación integral de un grupo
+                        electrógeno a gas marca <strong>CETEC</strong> para garantizar el respaldo energético
+                        ininterrumpido del edificio central de la Fiscalía de Estado de la Provincia de Buenos Aires,
+                        ubicado en <strong>calle 49 y 16, La Plata</strong>.</p>
+                    <h4>Obras Ejecutadas:</h4>
+                    <ul>
+                        <li>Operativo de logística e izaje de gran porte con grúa telescópica para el posicionamiento
+                            del equipo en altura.</li>
+                        <li>Montaje electromecánico e instalación integral de grupo electrógeno a gas CETEC.</li>
+                        <li>Adecuación de acometida de gas, tendido eléctrico de potencia y conexionado de transferencia
+                            automática.</li>
+                        <li>Puesta en marcha, ensayos de funcionamiento bajo carga y calibración de sistemas de
+                            seguridad.</li>
+                    </ul>
+                    <div class="technical-details">
+                        <h4>Ficha Técnica:</h4>
+                        <div class="tech-grid">
+                            <div class="tech-item"><strong>Equipamiento:</strong><span>Grupo Electrógeno a Gas
+                                    CETEC</span></div>
+                            <div class="tech-item"><strong>Alcance:</strong><span>Izaje, Montaje e Instalación</span>
+                            </div>
+                            <div class="tech-item"><strong>Ubicación:</strong><span>Calle 49 y 16, La Plata</span></div>
+                            <div class="tech-item"><strong>Organismo:</strong><span>Fiscalía de Estado PBA</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <a href="https://wa.me/5492213035814" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="./js/app.js?v=20261109h"></script></script>
+    <script src="./js/app.js?v=20261109k"></script>
 </body>
 
 </html>

@@ -126,21 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!carouselMain || !mainImg || thumbs.length === 0) return;
 
+        // Create custom video player container inside .carousel-main for video slides
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'video-player-wrapper';
+        videoWrapper.innerHTML = `
+            <div class="video-badge"><span class="video-badge-dot"></span> VIDEO DE OBRA</div>
+            <video class="carousel-main-video" playsinline preload="metadata"></video>
+            <button type="button" class="video-center-play" aria-label="Reproducir video">
+                <i class="fas fa-play"></i>
+            </button>
+            <button type="button" class="carousel-mute-btn" aria-label="Silenciar / Activar sonido" title="Activar / Silenciar sonido">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        `;
+        carouselMain.insertBefore(videoWrapper, nextBtn || null);
+
+        const mainVideo = videoWrapper.querySelector('.carousel-main-video');
+        const centerPlayBtn = videoWrapper.querySelector('.video-center-play');
+        const muteBtn = videoWrapper.querySelector('.carousel-mute-btn');
+
         // Create loading spinner inside .carousel-main
         const spinner = document.createElement('div');
         spinner.className = 'carousel-spinner';
         carouselMain.appendChild(spinner);
 
-        // Create small pause/play button for 15s auto-advance timer
+        // Create small pause/play button for 15s auto-advance timer & video playback
         const pauseBtn = document.createElement('button');
         pauseBtn.type = 'button';
         pauseBtn.className = 'carousel-pause-btn';
         pauseBtn.setAttribute('aria-label', 'Pausar presentación automática');
-        pauseBtn.setAttribute('title', 'Pausar presentación (15s)');
+        pauseBtn.setAttribute('title', 'Pausar presentación');
         pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
         carouselMain.appendChild(pauseBtn);
 
-        // Create thin progress bar at the bottom of .carousel-main
+        // Create thin progress bar at the bottom of .carousel-main (shared by photos & videos)
         const progressTrack = document.createElement('div');
         progressTrack.className = 'carousel-progress-track';
         const progressBar = document.createElement('div');
@@ -152,16 +171,113 @@ document.addEventListener('DOMContentLoaded', () => {
         let loadRequestId = 0;
         let isPaused = false;
 
+        const syncPauseBtnUI = (pausedState) => {
+            carouselMain.classList.toggle('is-paused', pausedState);
+            pauseBtn.classList.toggle('is-paused', pausedState);
+            pauseBtn.innerHTML = pausedState ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+            pauseBtn.setAttribute('title', pausedState ? 'Reanudar' : 'Pausar');
+            pauseBtn.setAttribute('aria-label', pausedState ? 'Reanudar' : 'Pausar');
+        };
+
+        const syncVideoUI = () => {
+            const playing = !mainVideo.paused && !mainVideo.ended;
+            videoWrapper.classList.toggle('is-playing', playing);
+            centerPlayBtn.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            muteBtn.innerHTML = mainVideo.muted
+                ? '<i class="fas fa-volume-mute"></i>'
+                : '<i class="fas fa-volume-up"></i>';
+            muteBtn.classList.toggle('is-muted', mainVideo.muted);
+            if (carouselMain.classList.contains('is-video')) {
+                syncPauseBtnUI(!playing);
+            }
+        };
+
+        const toggleVideoPlay = (e) => {
+            if (e) e.stopPropagation();
+            if (mainVideo.paused || mainVideo.ended) {
+                isPaused = false;
+                mainVideo.play().catch(() => {});
+            } else {
+                isPaused = true;
+                mainVideo.pause();
+            }
+            syncVideoUI();
+        };
+
+        mainVideo.addEventListener('click', toggleVideoPlay);
+        centerPlayBtn.addEventListener('click', toggleVideoPlay);
+
+        mainVideo.addEventListener('play', syncVideoUI);
+        mainVideo.addEventListener('pause', syncVideoUI);
+        mainVideo.addEventListener('volumechange', syncVideoUI);
+
+        mainVideo.addEventListener('timeupdate', () => {
+            if (!carouselMain.classList.contains('is-video')) return;
+            const duration = mainVideo.duration || 0;
+            const current = mainVideo.currentTime || 0;
+            const pct = duration > 0 ? Math.min(100, (current / duration) * 100) : 0;
+            progressBar.style.width = `${pct}%`;
+        });
+
+        // Allow clicking the bottom thin progress bar to seek when viewing a video
+        progressTrack.addEventListener('click', (e) => {
+            if (!carouselMain.classList.contains('is-video') || !mainVideo.duration) return;
+            e.stopPropagation();
+            const rect = progressTrack.getBoundingClientRect();
+            if (rect.width <= 0) return;
+            const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            mainVideo.currentTime = ratio * mainVideo.duration;
+            progressBar.style.width = `${ratio * 100}%`;
+        });
+
+        muteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mainVideo.muted = !mainVideo.muted;
+            syncVideoUI();
+        });
+
+        const stopVideo = () => {
+            if (!mainVideo.paused) {
+                mainVideo.pause();
+            }
+            if (mainVideo.getAttribute('src')) {
+                mainVideo.removeAttribute('src');
+                mainVideo.load();
+            }
+            videoWrapper.style.display = 'none';
+            videoWrapper.classList.remove('is-playing');
+            progressBar.style.width = '';
+            carouselMain.classList.remove('is-video');
+            syncPauseBtnUI(isPaused);
+        };
+
         const restartProgressBar = () => {
             progressBar.classList.remove('is-running');
+            progressBar.style.width = '';
+            if (carouselMain.classList.contains('is-video')) {
+                const modalOverlay = carousel.closest('.modal-overlay');
+                if (modalOverlay && modalOverlay.classList.contains('active') && !isPaused) {
+                    mainVideo.play().catch(() => {});
+                }
+                return;
+            }
             // Force reflow so the CSS animation restarts cleanly from 0%
             void progressBar.offsetWidth;
             progressBar.classList.add('is-running');
         };
 
         progressBar.addEventListener('animationend', () => {
+            if (carouselMain.classList.contains('is-video')) return;
             let nextIndex = (currentIndex + 1) % thumbs.length;
             updateCarousel(nextIndex, true);
+        });
+
+        mainVideo.addEventListener('ended', () => {
+            progressBar.style.width = '100%';
+            if (!isPaused) {
+                let nextIndex = (currentIndex + 1) % thumbs.length;
+                updateCarousel(nextIndex, true);
+            }
         });
 
         const updateCarousel = (index, shouldScrollThumb = true) => {
@@ -169,28 +285,65 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeThumb = thumbs[index];
             activeThumb.classList.add('active');
             const fullSrc = activeThumb.getAttribute('data-fullsrc') || activeThumb.getAttribute('src');
+            const isVideo = /\.mp4(\?.*)?$/i.test(fullSrc);
 
             const requestId = ++loadRequestId;
-            mainImg.style.opacity = '0';
-            carouselMain.classList.add('is-loading');
             progressBar.classList.remove('is-running');
+            stopVideo();
 
-            const preloadImg = new Image();
-            preloadImg.onload = () => {
-                if (requestId !== loadRequestId) return;
-                mainImg.src = fullSrc;
-                carouselMain.classList.remove('is-loading');
-                mainImg.style.opacity = '1';
-                restartProgressBar();
-            };
-            preloadImg.onerror = () => {
-                if (requestId !== loadRequestId) return;
-                mainImg.src = fullSrc;
-                carouselMain.classList.remove('is-loading');
-                mainImg.style.opacity = '1';
-                restartProgressBar();
-            };
-            preloadImg.src = fullSrc;
+            if (isVideo) {
+                mainImg.style.opacity = '0';
+                mainImg.style.display = 'none';
+                carouselMain.classList.add('is-video', 'is-loading');
+                videoWrapper.style.display = 'flex';
+                progressBar.style.width = '0%';
+                mainVideo.src = fullSrc;
+                syncVideoUI();
+
+                const onVideoReady = () => {
+                    if (requestId !== loadRequestId) return;
+                    carouselMain.classList.remove('is-loading');
+                    const modalOverlay = carousel.closest('.modal-overlay');
+                    if (modalOverlay && modalOverlay.classList.contains('active') && !isPaused) {
+                        mainVideo.play().catch(() => {
+                            mainVideo.muted = true;
+                            mainVideo.play().catch(() => {
+                                syncVideoUI();
+                            });
+                        });
+                    } else {
+                        syncVideoUI();
+                    }
+                };
+
+                mainVideo.onloadeddata = onVideoReady;
+                mainVideo.onerror = () => {
+                    if (requestId !== loadRequestId) return;
+                    carouselMain.classList.remove('is-loading');
+                };
+                mainVideo.load();
+            } else {
+                mainImg.style.display = 'block';
+                mainImg.style.opacity = '0';
+                carouselMain.classList.add('is-loading');
+
+                const preloadImg = new Image();
+                preloadImg.onload = () => {
+                    if (requestId !== loadRequestId) return;
+                    mainImg.src = fullSrc;
+                    carouselMain.classList.remove('is-loading');
+                    mainImg.style.opacity = '1';
+                    restartProgressBar();
+                };
+                preloadImg.onerror = () => {
+                    if (requestId !== loadRequestId) return;
+                    mainImg.src = fullSrc;
+                    carouselMain.classList.remove('is-loading');
+                    mainImg.style.opacity = '1';
+                    restartProgressBar();
+                };
+                preloadImg.src = fullSrc;
+            }
 
             currentIndex = index;
             if (shouldScrollThumb) {
@@ -198,20 +351,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Expose reset method on carousel element so openProjectModal can restart timer from 0%
+        // Expose reset and stop methods on carousel element for modal open/close
         carousel._restartTimer = restartProgressBar;
+        carousel._stopMedia = () => {
+            if (!mainVideo.paused) {
+                mainVideo.pause();
+            }
+        };
 
         // Initialize without scrolling the page
         updateCarousel(0, false);
 
         pauseBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            isPaused = !isPaused;
-            carouselMain.classList.toggle('is-paused', isPaused);
-            pauseBtn.classList.toggle('is-paused', isPaused);
-            pauseBtn.innerHTML = isPaused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-            pauseBtn.setAttribute('title', isPaused ? 'Reanudar presentación (15s)' : 'Pausar presentación (15s)');
-            pauseBtn.setAttribute('aria-label', isPaused ? 'Reanudar presentación automática' : 'Pausar presentación automática');
+            if (carouselMain.classList.contains('is-video')) {
+                toggleVideoPlay();
+            } else {
+                isPaused = !isPaused;
+                syncPauseBtnUI(isPaused);
+            }
         });
 
         thumbs.forEach((thumb, index) => {
@@ -350,6 +508,10 @@ function openProjectModal(modalId) {
 function closeProjectModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
+        const carousel = modal.querySelector('.project-carousel');
+        if (carousel && typeof carousel._stopMedia === 'function') {
+            carousel._stopMedia();
+        }
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
     }
@@ -357,6 +519,10 @@ function closeProjectModal(modalId) {
 
 window.addEventListener('click', (event) => {
     if (event.target.classList.contains('modal-overlay')) {
+        const carousel = event.target.querySelector('.project-carousel');
+        if (carousel && typeof carousel._stopMedia === 'function') {
+            carousel._stopMedia();
+        }
         event.target.classList.remove('active');
         document.body.classList.remove('modal-open');
     }
